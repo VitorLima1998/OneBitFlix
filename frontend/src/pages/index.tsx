@@ -1,3 +1,4 @@
+import HeaderNoAuth from "@/components/homeNoAuth/headerNoAuth";
 import Head from "next/head";
 import styles from "../styles/HomeNoAuth.module.css";
 
@@ -5,9 +6,17 @@ const HomeNoAuth = () => {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>OneBitFlix</title>
+        <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
+        <meta property="og:title" content="OneBitFlix" key="title" />
+        <meta
+          name="description"
+          content="Tenha acesso aos melhores conteúdos de programação de forma simples e fácil"
+        />
       </Head>
-      <main></main>
+      <main>
+        <HeaderNoAuth />
+      </main>
     </>
   );
 };
