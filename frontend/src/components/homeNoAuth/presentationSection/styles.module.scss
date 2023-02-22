@@ -16,5 +16,26 @@
 .description {
   font-size: 20px;
   color: $lightGray;
-  margin: 20px 0px 40px 0g;
+  margin: 20px 0px 40px 0px;
+}
+.btnCta {
+  font-weight: bold;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 14px 30px;
+  border: solid 2px $lightRed;
+
+  .btnImg {
+    width: 11px;
+  }
+  &:hover {
+    border-color: $darkRed;
+    color: $lightGray;
+    background-color: transparent;
+  }
+}
+.arrowDown {
+  width: 30px;
 }
