@@ -8,7 +8,6 @@ export type EpisodeType = {
   videoUrl: string;
   secondsLong: number;
 };
-
 export type CourseType = {
   id: number;
   name: string;
@@ -19,13 +18,22 @@ export type CourseType = {
 
 const courseService = {
   getNewestCourses: async () => {
-    const res = await api.get("/courses/newest").catch((error) => {
-      console.log(error.response.data.message);
+    const res = await api
+      .get("/courses/newest")
+      .then((r) => {
+        console.log(api);
+        return r;
+      })
+      .catch((error) => {
+        console.log(error.response);
+        return error.response;
+      });
 
-      return error.response;
-    });
+    if (res != undefined) return res;
+    console.log(api);
 
-    return res;
+    return null;
   },
 };
+
 export default courseService;

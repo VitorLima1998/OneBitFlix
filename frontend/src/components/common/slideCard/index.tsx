@@ -6,13 +6,13 @@ interface props {
   course: CourseType;
 }
 
-const SlideCard = ({ course }: props) => {
+const SlideCard = function ({ course }: props) {
   return (
     <>
       <Link href={`/courses/${course.id}`}>
         <div className={styles.slide}>
           <img
-            src={`${process.env.NEXT_PUBLIC_BASEURL}/${course.thumbnailUrl}`}
+            src={`http://localhost:3000/${course.thumbnailUrl}`}
             alt={course.name}
             className={styles.slideImg}
           />

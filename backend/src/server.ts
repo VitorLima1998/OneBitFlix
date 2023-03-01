@@ -6,7 +6,11 @@ import { router } from "./routes";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use(express.static("public")); //propriedade static identifica que tudo que estiver na pasta que foi passada como parâmetro será servida como arquivo estático na aplicação
 
