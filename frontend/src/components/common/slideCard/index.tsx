@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import styles from "./styles.module.scss";
 import { CourseType } from "@/services/courseService";
 import Link from "next/link";

@@ -21,7 +21,6 @@ const courseService = {
     const res = await api
       .get("/courses/newest")
       .then((r) => {
-        console.log(api);
         return r;
       })
       .catch((error) => {
@@ -30,7 +29,6 @@ const courseService = {
       });
 
     if (res != undefined) return res;
-    console.log(api);
 
     return null;
   },
