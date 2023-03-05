@@ -7,6 +7,7 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import { ReactNode } from "react";
 import styles from "../styles/HomeNoAuth.module.scss";
+import Footer from "@/components/common/footer";
 
 // Fazendo a interface
 interface IndexPageProps {
@@ -34,6 +35,7 @@ const HomeNoAuth = ({ course }: IndexPageProps) => {
         </div>
         <CardsSection />
         <SlideSection newestCourses={course} />
+        <Footer />
       </main>
     </>
   );
