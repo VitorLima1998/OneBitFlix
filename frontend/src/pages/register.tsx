@@ -4,8 +4,46 @@ import Head from "next/head";
 import Footer from "@/components/common/footer";
 import HeaderGeneric from "@/components/common/headerGeneric";
 import { Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { FormEvent } from "react";
+import authService from "@/services/authService";
 
 const Register = () => {
+  const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    //formData vai pegar o valor do input selecionado (neste caso, todos).
+    const formData = new FormData(event.currentTarget);
+    const firstName = formData.get("firstName")!.toString();
+    const lastName = formData.get("lastName")!.toString();
+    const phone = formData.get("phone")!.toString();
+    const birth = formData.get("birth")!.toString();
+    const email = formData.get("email")!.toString();
+    const password = formData.get("password")!.toString();
+    const confirmPassword = formData.get("confirmPassword")!.toString();
+
+    const params = {
+      firstName,
+      lastName,
+      phone,
+      birth,
+      email,
+      password,
+    };
+
+    if (password != confirmPassword) {
+      alert("Senhas diferentes!");
+      return;
+    }
+
+    const { data, status } = await authService.register(params);
+
+    if (status === 201) {
+      alert("Cadastro realizado com sucesso!");
+    } else {
+      alert(data.message);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -21,7 +59,7 @@ const Register = () => {
         />
         <Container className="py-5">
           <p className={styles.formTitle}>Bem-vindo(a) ao OneBitFlix!</p>
-          <Form className={styles.form}>
+          <Form className={styles.form} onSubmit={handleRegister}>
             <p className="text-center">
               <strong>Faça a sua conta!</strong>
             </p>
@@ -110,12 +148,12 @@ const Register = () => {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="password" className={styles.label}>
+              <Label for="confirmPassword" className={styles.label}>
                 Confirmar Senha
               </Label>
               <Input
-                id="password"
-                name="password"
+                id="confirmPassword"
+                name="confirmPassword"
                 type="password"
                 placeholder="Confirme sua senha"
                 required
@@ -129,7 +167,6 @@ const Register = () => {
             </Button>
           </Form>
         </Container>
-
         <Footer />
       </main>
     </>
