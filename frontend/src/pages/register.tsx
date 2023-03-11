@@ -124,6 +124,9 @@ const Register = () => {
                 className={styles.input}
               />
             </FormGroup>
+            <Button type="submit" outline className={styles.formBtn}>
+              Cadastrar
+            </Button>
           </Form>
         </Container>
 
