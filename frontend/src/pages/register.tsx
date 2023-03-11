@@ -4,10 +4,15 @@ import Head from "next/head";
 import Footer from "@/components/common/footer";
 import HeaderGeneric from "@/components/common/headerGeneric";
 import { Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import authService from "@/services/authService";
+import { useRouter } from "next/router";
+import ToastComponent from "@/components/common/toast";
 
 const Register = () => {
+  const router = useRouter();
+  const [toastIsOpen, setToastIsOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -31,16 +36,24 @@ const Register = () => {
     };
 
     if (password != confirmPassword) {
-      alert("Senhas diferentes!");
+      setToastIsOpen(true);
+      setTimeout(() => {
+        setToastIsOpen(false);
+      }, 1000 * 3);
+      setToastMessage("As senhas não conferem.");
       return;
     }
 
     const { data, status } = await authService.register(params);
 
     if (status === 201) {
-      alert("Cadastro realizado com sucesso!");
+      router.push("/login?registred=true");
     } else {
-      alert(data.message);
+      setToastIsOpen(true);
+      setTimeout(() => {
+        setToastIsOpen(false);
+      }, 1000 * 3);
+      setToastMessage(data.message);
     }
   };
 
@@ -168,6 +181,11 @@ const Register = () => {
           </Form>
         </Container>
         <Footer />
+        <ToastComponent
+          color="bg-danger"
+          isOpen={toastIsOpen}
+          message={toastMessage}
+        />
       </main>
     </>
   );
