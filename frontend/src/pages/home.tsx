@@ -9,7 +9,7 @@ const HomeAuth = () => {
         <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
       </Head>
       <main>
-        <FeaturedSection></FeaturedSection>
+        <FeaturedSection />
       </main>
     </>
   );
