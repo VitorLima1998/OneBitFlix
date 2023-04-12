@@ -53,6 +53,7 @@ export const authController = {
         };
         const token = jwtService.signToken(payload, "7d");
 
+        console.log(token);
         return res.json({ authenticated: true, ...payload, token });
       });
     } catch (err) {
