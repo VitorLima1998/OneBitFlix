@@ -1,4 +1,4 @@
-import categoriesService, { Categorytype } from "@/services/categoriesService";
+import categoriesService, { CategoryType } from "@/services/categoriesService";
 import useSWR from "swr";
 import ListCategoriesSlide from "../listCategoriesSlide";
 
@@ -17,7 +17,7 @@ const ListCategories = () => {
     );
   return (
     <>
-      {data.data.categories?.map((category: Categorytype) => (
+      {data.data.categories?.map((category: CategoryType) => (
         <ListCategoriesSlide
           key={category.id}
           categoryId={category.id}

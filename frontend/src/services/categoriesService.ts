@@ -1,7 +1,7 @@
 import api from "./api";
 import { CourseType } from "./courseService";
 
-export type Categorytype = {
+export type CategoryType = {
   id: number;
   name: string;
   position: number;
