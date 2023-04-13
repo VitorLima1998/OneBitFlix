@@ -1,3 +1,4 @@
+import { error } from "console";
 import api from "./api";
 
 export type EpisodeType = {
@@ -24,7 +25,6 @@ const courseService = {
         return r;
       })
       .catch((error) => {
-        console.log(error.response);
         return error.response;
       });
 
@@ -44,11 +44,55 @@ const courseService = {
       })
 
       .catch((error) => {
-        console.log(error.response.data.message);
-
         return error.response;
       });
 
+    return res;
+  },
+  addToFav: async (courseId: number | string) => {
+    const token = sessionStorage.getItem("onebitflix-token");
+
+    const res = await api
+      .post(
+        "/favorites",
+        { courseId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .catch((error) => {
+        return error.response;
+      });
+
+    return res;
+  },
+  removeFav: async (courseId: number | string) => {
+    const token = sessionStorage.getItem("onebitflix-token");
+
+    const res = await api
+      .delete("/favorites", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: { courseId },
+      })
+      .catch((error) => {
+        return error.response;
+      });
+
+    return res;
+  },
+  getFavCourses: async () => {
+    const token = sessionStorage.getItem("onebitflix-token");
+    const res = await api
+      .get("/favorites", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .catch((error) => {
+        return error.response;
+      });
     return res;
   },
 };
