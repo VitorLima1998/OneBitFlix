@@ -16,19 +16,20 @@ const Login = () => {
 
   useEffect(() => {
     if (sessionStorage.getItem("onebitflix-token")) {
-      router.push("/home ");
+      router.push("/home");
     }
-  });
+  }, []);
 
   useEffect(() => {
     const registerSuccess = router.query.registred;
 
     if (registerSuccess === "true") {
       setToastColor("bg-success");
+      setToastIsOpen(true);
+      setToastMessage("Cadastro realizado com sucesso!");
       setTimeout(() => {
         setToastIsOpen(false);
-      }, 1000 * 3);
-      setToastMessage("Cadastro realizado com sucesso!");
+      }, 3000);
     }
   }, [router.query]);
 
@@ -46,10 +47,11 @@ const Login = () => {
       router.push("/home");
     } else {
       setToastColor("bg-danger");
+      setToastIsOpen(true);
+      setToastMessage("E-mail ou senha incorretos!");
       setTimeout(() => {
         setToastIsOpen(false);
-      }, 1000 * 3);
-      setToastMessage("E-mail ou senha incorretos!");
+      }, 3000);
     }
   };
 
