@@ -61,7 +61,7 @@ const HeaderAuth = () => {
           className={styles.modal}
           overlayClassName={styles.overlayModal}
         >
-          <Link href="/">
+          <Link href="/profile">
             <p className={styles.modalLink}>Meus Dados</p>
             <p className={styles.modalLink} onClick={HandleLogout}>
               Sair
